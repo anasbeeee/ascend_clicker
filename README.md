@@ -43,9 +43,9 @@ Même après la fin de l’histoire, le jeu reste jouable grâce au système de 
 
 ## Technologies utilisées
 
-- HTML
-- CSS (simple et lisible)
-- JavaScript vanilla
+- 
+- CSS (simple et lisible)HTML
+- JavaScript 
 
 Aucun framework n’est utilisé volontairement afin de :
 - mieux comprendre les bases du développement web,
