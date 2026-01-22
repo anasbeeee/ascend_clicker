@@ -1,0 +1,14 @@
+h1 {
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.boutton{
+    display: block;
+    margin: 0 auto;
+}
