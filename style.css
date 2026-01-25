@@ -1,50 +1,239 @@
-body {
+/* =========================
+   RESET MINIMAL
+========================= */
+* {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #000000;
-    color: rgb(141, 141, 146);
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-h1 {
+#headers {
     text-align: center;
-    margin: 20px 0;
 }
 
+#header h1 {
+    color :#0f172a;
+}
+footer {
+    text-align: center;
+}
+
+/* =========================
+   FOND GLOBAL (NEIGE / CIEL)
+========================= */
+body {
+    min-height: 100vh;
+    background: radial-gradient(
+        circle at top,
+        #e2e8f0 0%,
+        #cbd5e1 30%,
+        #64748b 65%,
+        #0f172a 100%
+    );
+    color: #e5e7eb;
+}
+
+
+
+/* =========================
+   LAYOUT PRINCIPAL
+========================= */
 #game {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    height: calc(100vh - 80px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
 }
 
-#left, #center, #right {
+/* =========================
+   COLONNES
+========================= */
+#left {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* centrage vertical */
-    align-items: center;     /* centrage horizontal */
-    padding: 20px;
-    border-left: 1px solid #333;
-}
-
-#left {
-    border-left: none;
-}
-
-
-#left {
-    background: #0e0542;
+    gap: 15px;
+    width: 22%;
 }
 
 #center {
-    background: #0e0542;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
 }
 
 #right {
-    background: #0e0542;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 15px;
+    width: 22%;
 }
 
-button {
-    margin: 10px 0;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+/* =========================
+   CONTAINERS (PANNEAUX)
+========================= */
+.container {
+    background: rgba(30, 41, 59, 0.75); /* bleu ardoise */
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 16px 18px;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
+
+
+/* =========================
+   CENTRE (ZONE PRINCIPALE)
+========================= */
+#center .container {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(203, 213, 225, 0.2);
+}
+
+
+/* =========================
+   HUD : GOLD / ALTITUDE
+========================= */
+#gold,
+#altitude {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
+}
+
+/* =========================
+   BOUTONS (STYLE GIVRÉ)
+========================= */
+button {
+    width: 100%;
+    padding: 10px 14px;
+    background: linear-gradient(
+        180deg,
+        #f8fafc,
+        #e2e8f0
+    );
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    color: #0f172a;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.15);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* =========================
+   LISTES (MÉTIERS / PERSOS)
+========================= */
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+li {
+    background: rgba(241, 245, 249, 0.8);
+    border-radius: 8px;
+    padding: 8px 10px;
+    border: 1px solid rgba(203, 213, 225, 0.6);
+    font-size: 0.9rem;
+}
+
+/* =========================
+   PERSONNAGES (ZONE DROITE)
+========================= */
+#right .container {
+    align-self: flex-end;
+}
+
+/* =========================
+   MICRO DÉTAILS VISUELS
+========================= */
+.container h2 {
+    color: #e5e7eb;
+}
+
+.label {
+    color: #94a3b8;
+}
+
+li {
+    background: rgba(51, 65, 85, 0.8);
+    color: #e5e7eb;
+}
+
+
+
+
+.container small {
+    color: #64748b;
+}
+
+
+#journal {
+    width: 320px;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#journal h2 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+    color: #e5e7eb;
+}
+
+
+#journal-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.journal-entry {
+    background: rgba(15, 23, 42, 0.7);
+    border-left: 3px solid #94a3b8;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #e5e7eb;
+}
+
+
+.journal-entry.acte {
+    border-left-color: #38bdf8;
+}
+
+.journal-entry.event {
+    border-left-color: #facc15;
+}
+
+.journal-entry.character {
+    border-left-color: #f472b6;
+}
+

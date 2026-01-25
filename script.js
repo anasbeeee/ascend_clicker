@@ -6,7 +6,7 @@ let player = {
     gold: 0,
     gold_power: 1,
     personnage_m_multiplicateur: 1,
-    personnage_gold_multiplicateur: 1,
+    personnage_gold_multiplicateur: 1, 
 }
 
 let auto = false
@@ -22,7 +22,7 @@ const travaux = [
 ]
 
 const personnages = [
-    { id: 1, nom: "test", bonus: 1, unite_du_bonus: "m", altitude_de_deblocage: 20, dialogue: "", achete: false, sprite: "" }
+    { id: 1, nom: "test", bonus: 1, unite_du_bonus: "m", altitude_de_deblocage: 20, dialogue: "salut c'est un test lalalalalalall je comble le vide pour faire toute la tailleeeeeee hahahahah", achete: false, sprite: "" }
 ]
 
 // SECTION 2 SELECTION DU DOM
@@ -34,6 +34,7 @@ const gold_passif = document.getElementById("gold_passif")
 const pnj = document.getElementById("personnages")
 const multiplicateurm = document.getElementById("multiplicateurm")
 const multiplicateur_gold = document.getElementById("multiplicateur_gold")
+const journalContent = document.getElementById("journal-content");
 
 // SECTION 3 FONCTIONS / METIER
 function monter(player) {
@@ -74,6 +75,10 @@ function verifier_personnages(player) {
         if (!personnage.achete && player.altitude >= personnage.altitude_de_deblocage) {
             personnage.achete = true
             ajouter_bonus_personnages(personnage)
+            addJournalEntry(
+                "character",
+                personnage.nom + " : " + personnage.dialogue
+            )
         }
     })
     update_personnages()
@@ -87,6 +92,19 @@ function ajouter_bonus_personnages(personnage) {
         player.personnage_gold_multiplicateur += personnage.bonus
     }
     update_multiplicateurs(player)
+}
+
+
+function addJournalEntry(type, text) {
+    const entry = document.createElement("div");
+    entry.classList.add("journal-entry", type);
+
+    entry.textContent = text;
+
+    journalContent.appendChild(entry);
+
+    // auto-scroll vers le bas
+    journalContent.scrollTop = journalContent.scrollHeight;
 }
 
 // SECTION 4 AFFICHAGE
@@ -176,3 +194,8 @@ update_travaux()
 update_personnages()
 update_multiplicateurs(player)
 update_gold(player)
+addJournalEntry(
+    "acte",
+    "Acte I — Le sol est déjà trop bas. L’air est froid. Monter semble être la seule option."
+);
+

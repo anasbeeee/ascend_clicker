@@ -8,39 +8,61 @@
     <meta charset="utf-8">
 </head>
 
-<body>
-
+<header id="headers">
     <h1>ASCEND</h1>
+</header>
 
-    <div id="game">
+<main id="game">
 
-        <!-- COLONNE GAUCHe -->
-        <section id="left">
-            <h2>Argent</h2>
-            <p id="gold">0$</p>
 
-            <h3>Métiers</h3>
-            <ul id="gold_passif"></ul>
-        </section>
 
-        <!-- COLONNE CENTRALE -->
-        <section id="center">
-            <p id="altitude">Altitude : 0 m</p>
-            <button id="altbtn">Monter</button>
-            <button id="auto_click">Passif : OFF</button>
-        </section>
 
-        <!-- COLONNE DROITE -->
-        <section id="right">
-            <p id="multiplicateurm">multiplicateur m : 0</p>
-            <p id="multiplicateur_gold">multiplicateur $ : 0</p>
-            <h2>Personnages</h2>
-            <ul id="personnages"></ul>
+
+
+    <!-- COLONNE GAUCHe -->
+    <div id="left" class="container">
+        <h2>Argent</h2>
+        <p id="gold">0$</p>
+
+        <h3>Métiers</h3>
+        <ul id="gold_passif"></ul>
+    </div>
+
+    <!-- COLONNE CENTRALE -->
+    <div id="center">
+        <p id="altitude">Altitude : 0 m</p>
+        <button id="altbtn">Monter</button>
+        <button id="auto_click">Passif : OFF</button>
+
+        <section id="journal" class="container">
+            <h2>Journal d’Ascension</h2>
+
+            <div id="journal-content">
+
+                <!-- Les entrées seront ajoutées en JS -->
+            </div>
         </section>
 
     </div>
 
-</body>
+    <!-- COLONNE DROITE -->
+    <div id="right" class="container">
+        <p id="multiplicateurm">multiplicateur m : 0</p>
+        <p id="multiplicateur_gold">multiplicateur $ : 0</p>
+        <h2>Personnages</h2>
+        <ul id="personnages"></ul>
+
+        
+    </div>
+
+    <!-- JOURNAL NARRATIF -->
+
+
+</main>
+
+<footer>
+    <p>ASCEND ©</p>
+</footer>
 
 
 </html>
