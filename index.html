@@ -9,35 +9,38 @@
 </head>
 
 <body>
+
     <h1>ASCEND</h1>
-    <div class="container" id="stats">
-        <p id="altitude">Altitude : 0</p>
-    </div>
-    <div id="gold_div">
-        <p>votre argent :</p>
-        <p id="gold">0$</p>
-        <p>vos travaux :</p>
-        <ul id="gold_passif">
-            <li id="travail1"></li>
-            <li id="travail2"></li>
-            <li id="travail3"></li>
-            <li id="travail4"></li>
-            <li id="travail5"></li>
-            <li id="travail6"></li>
-        </ul>
+
+    <div id="game">
+
+        <!-- COLONNE GAUCHe -->
+        <section id="left">
+            <h2>Argent</h2>
+            <p id="gold">0$</p>
+
+            <h3>Métiers</h3>
+            <ul id="gold_passif"></ul>
+        </section>
+
+        <!-- COLONNE CENTRALE -->
+        <section id="center">
+            <p id="altitude">Altitude : 0 m</p>
+            <button id="altbtn">Monter</button>
+            <button id="auto_click">Passif : OFF</button>
+        </section>
+
+        <!-- COLONNE DROITE -->
+        <section id="right">
+            <p id="multiplicateurm">multiplicateur m : 0</p>
+            <p id="multiplicateur_gold">multiplicateur $ : 0</p>
+            <h2>Personnages</h2>
+            <ul id="personnages"></ul>
+        </section>
+
     </div>
 
-    <div class="container" id="actions">
-        <button class="boutton" id="altbtn">Cliquer</button>
-    </div>
-
-    <div class="container" id="passif">
-        <button class="boutton" id="auto_click">Passif : OFF</button>
-    </div>
-
-    <footer>
-        <p></p>
-    </footer>
 </body>
+
 
 </html>
