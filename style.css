@@ -12,8 +12,8 @@
     text-align: center;
 }
 
-#header h1 {
-    color :#0f172a;
+#headers h1 {
+    color :#04163e;
 }
 footer {
     text-align: center;
@@ -230,7 +230,7 @@ li {
 }
 
 .journal-entry.event {
-    border-left-color: #facc15;
+    border-left-color: #f7f6f0;
 }
 
 .journal-entry.character {

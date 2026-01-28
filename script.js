@@ -18,11 +18,14 @@ const travaux = [
     { id: 1, nom: "Livreur", gain: 1, cout: 10, achete: false },
     { id: 2, nom: "Ouvrier", gain: 3, cout: 50, achete: false },
     { id: 3, nom: "Ingénieur", gain: 10, cout: 200, achete: false },
-    { id: 4, nom: "Entrepreneur", gain: 25, cout: 1000, achete: false }
+    { id: 4, nom: "Entrepreneur", gain: 25, cout: 1000, achete: false },
+    {id:5, nom: "homme du fond", gain: 100000000000, cout: 1000000000,achete: false}
 ]
 
 const personnages = [
-    { id: 1, nom: "test", bonus: 1, unite_du_bonus: "m", altitude_de_deblocage: 20, dialogue: "salut c'est un test lalalalalalall je comble le vide pour faire toute la tailleeeeeee hahahahah", achete: false, sprite: "" }
+    { id: 1, nom: "kylian", bonus: 1, unite_du_bonus: "m", altitude_de_deblocage: 20, dialogue: "js vrm un tdc", achete: false, sprite: "" },
+    { id: 2, nom: "gianni ashkenaz", bonus: 10, unite_du_bonus: "$", altitude_de_deblocage: 50, dialogue: "GNEGNEGNAGN    AGNA", achete: false, sprite: "" },
+    { id: 3, nom: "paffza", bonus: 12.5, unite_du_bonus: "m", altitude_de_deblocage: 1000, dialogue: "je suis vraiment l'homme du fond  ", achete: false, sprite: "" }
 ]
 
 // SECTION 2 SELECTION DU DOM
@@ -113,7 +116,11 @@ function update_interface(player) {
     alt_montrer.textContent = "Altitude : " + player.altitude + " m"
 
     if (player.altitude >= 8849 && !everestAtteint) {
-        alert("Vous avez atteint le sommet de l'Everest (+10 passif)")
+        alert("tu as atteint l'everest")
+        addJournalEntry(
+            "event",
+            "tu as atteint l'everest!!!!!"
+        )
         player.passif_global += 10
         everestAtteint = true
     }
@@ -132,8 +139,8 @@ function update_gold(player) {
 }
 
 function update_multiplicateurs(player) {
-    multiplicateur_gold.textContent = "Multiplicateur $ : x" + player.personnage_gold_multiplicateur
-    multiplicateurm.textContent = "Multiplicateur m : x" + player.personnage_m_multiplicateur
+    multiplicateur_gold.textContent = "Multiplicateur $ : +" + player.personnage_gold_multiplicateur
+    multiplicateurm.textContent = "Multiplicateur m : +" + player.personnage_m_multiplicateur
 }
 
 function update_travaux() {
@@ -158,11 +165,13 @@ function update_personnages() {
     pnj.innerHTML = ""
 
     personnages.forEach(personnage => {
+        if (personnage.achete){
         const li = document.createElement("li")
         li.textContent = personnage.achete
-            ? `${personnage.nom} (bonus x${personnage.bonus} ${personnage.unite_du_bonus})`
+            ? `${personnage.nom} (bonus +${personnage.bonus} ${personnage.unite_du_bonus})`
             : `${personnage.nom} — débloqué à ${personnage.altitude_de_deblocage} m`
         pnj.appendChild(li)
+        }
     })
 }
 
@@ -172,7 +181,7 @@ button.addEventListener("click", () => {
     update_interface(player)
 })
 
-document.addEventListener("keydown", event => {
+document.addEventListener("keyup", event => {
     if (event.code === "Space") {
         monter(player)
         update_interface(player)
@@ -199,3 +208,13 @@ addJournalEntry(
     "Acte I — Le sol est déjà trop bas. L’air est froid. Monter semble être la seule option."
 );
 
+addJournalEntry(
+    "event",
+    "oe kylian le pti tdc"
+)
+
+
+addJournalEntry(
+    "event",
+    "JULIEN BONJOUR"
+)
