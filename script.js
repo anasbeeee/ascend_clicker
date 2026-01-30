@@ -25,7 +25,8 @@ const travaux = [
 const personnages = [
     { id: 1, nom: "kylian", bonus: 1, unite_du_bonus: "m", altitude_de_deblocage: 20, dialogue: "js vrm un tdc", achete: false, sprite: "" },
     { id: 2, nom: "gianni ashkenaz", bonus: 10, unite_du_bonus: "$", altitude_de_deblocage: 50, dialogue: "GNEGNEGNAGN    AGNA", achete: false, sprite: "" },
-    { id: 3, nom: "paffza", bonus: 12.5, unite_du_bonus: "m", altitude_de_deblocage: 1000, dialogue: "je suis vraiment l'homme du fond  ", achete: false, sprite: "" }
+    { id: 3, nom: "paffza", bonus: 1.25, unite_du_bonus: "m", altitude_de_deblocage: 1000, dialogue: "je suis vraiment l'homme du fond  ", achete: false, sprite: "" },
+    { id: 3, nom: "samiiiii", bonus: 5, unite_du_bonus: "m", altitude_de_deblocage: 2000, dialogue: " venez en stream a 18h sur kick : kick.com/roigodelin  ", achete: false, sprite: "" }
 ]
 
 // SECTION 2 SELECTION DU DOM
