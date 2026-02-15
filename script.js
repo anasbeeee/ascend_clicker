@@ -11,32 +11,113 @@ let player = {
 
 let auto = false
 let intervalId = null
-let everestAtteint = false
 let lastAltitudeGoldCheck = 0
 
 let personnagesDebloques = new Set()
 let eventsDeclenches = new Set()
 
 const altitudeEvents = {
-    100: "Le vent commence à hurler.",
-    500: "La vallée disparaît derrière les nuages.",
-    2000: "Respirer devient difficile."
+    70: "L’air est étrangement immobile.",
+    3000: "Tu entends le vent murmurer ton nom.",
+    300: "Le chemin derrière toi n’existe plus.",
+    600: "Des traces apparaissent à côté des tiennes.",
+    1000: "Tu réalises que tu n’as jamais regardé en bas.",
+    1800: "Quelqu’un te regarde depuis les nuages.",
+    3000: "Tes pensées deviennent floues.",
+    4000: "La montagne semble respirer.",
+    6000: "Tu comprends qu’elle te laisse monter.",
+    9000: "Tu as déjà vécu ce moment.",
+    11000: "Le sommet n’est pas un endroit.",
+    1700: "Tu montes encore. Mais ce n’est plus toi."
 }
 
+
 const travaux = [
-    { id: 1, nom: "Livreur", gain: 1, cout: 10, achete: false },
-    { id: 2, nom: "Ouvrier", gain: 3, cout: 50, achete: false },
-    { id: 3, nom: "Ingénieur", gain: 10, cout: 200, achete: false },
-    { id: 4, nom: "Entrepreneur", gain: 25, cout: 1000, achete: false },
-    { id: 5, nom: "homme du fond", gain: 100000000000, cout: 1000000000, achete: false }
+    { id: 1, nom: "Porteur local", gain: 1, cout: 10, achete: false },
+    { id: 2, nom: "Cartographe perdu", gain: 3, cout: 80, achete: false },
+    { id: 3, nom: "Chercheur d’altitude", gain: 8, cout: 300, achete: false },
+    { id: 4, nom: "Expédition financée", gain: 20, cout: 1500, achete: false },
+    { id: 5, nom: "Marcheurs du Ciel", gain: 60, cout: 8000, achete: false },
+    { id: 6, nom: "Machine d’ascension", gain: 200, cout: 40000, achete: false },
+    { id: 7, nom: "L’Appel du Vide", gain: 1200, cout: 200000, achete: false }
 ]
 
+
 const personnages = [
-    { id: 1, nom: "kylian", bonus: 1, unite_du_bonus: "m", altitude_de_deblocage: 20, dialogue: "js vrm un tdc", achete: false },
-    { id: 2, nom: "gianni ashkenaz", bonus: 10, unite_du_bonus: "$", altitude_de_deblocage: 50, dialogue: "GNEGNEGNAGN AGNA", achete: false },
-    { id: 3, nom: "paffza", bonus: 1.25, unite_du_bonus: "m", altitude_de_deblocage: 1000, dialogue: "je suis vraiment l'homme du fond", achete: false },
-    { id: 4, nom: "samiiiii", bonus: 5, unite_du_bonus: "m", altitude_de_deblocage: 2000, dialogue: "venez en stream a 18h sur kick : kick.com/roigodelin", achete: false }
+    {
+        id: 1,
+        nom: "Le Guide Silencieux",
+        bonus: 1,
+        unite_du_bonus: "m",
+        altitude_de_deblocage: 50,
+        dialogue: "Je connais le chemin. Pas la destination.",
+        achete: false
+    },
+    {
+        id: 2,
+        nom: "La Touriste Égarée",
+        bonus: 2,
+        unite_du_bonus: "$",
+        altitude_de_deblocage: 300,
+        dialogue: "Je voulais juste une photo…",
+        achete: false
+    },
+    {
+        id: 3,
+        nom: "Le Géologue",
+        bonus: 1.5,
+        unite_du_bonus: "m",
+        altitude_de_deblocage: 1000,
+        dialogue: "Cette montagne n’est sur aucune carte.",
+        achete: false
+    },
+    {
+        id: 4,
+        nom: "Le Moine du Vent",
+        bonus: 4,
+        unite_du_bonus: "$",
+        altitude_de_deblocage: 4000,
+        dialogue: "Le sommet est une idée, pas un lieu.",
+        achete: false
+    },
+    {
+        id: 5,
+        nom: "L’Enfant Pressé",
+        bonus: 3,
+        unite_du_bonus: "m",
+        altitude_de_deblocage: 5000,
+        dialogue: "Pourquoi tu montes si lentement ?",
+        achete: false
+    },
+    {
+        id: 6,
+        nom: "La Voix Derrière Toi",
+        bonus: 8,
+        unite_du_bonus: "$",
+        altitude_de_deblocage: 7000,
+        dialogue: "Continue. Tu es presque arrivé.",
+        achete: false
+    },
+    {
+        id: 7,
+        nom: "L’Alpiniste Sans Visage",
+        bonus: 5,
+        unite_du_bonus: "m",
+        altitude_de_deblocage: 8000,
+        dialogue: "Je suis arrivé avant toi.",
+        achete: false
+    },
+    {
+        id: 8,
+        nom: "L’Architecte du Sommet",
+        bonus: 15,
+        unite_du_bonus: "$",
+        altitude_de_deblocage: 19000,
+        dialogue: "Tu n’as jamais choisi de monter.",
+        achete: false
+    }
 ]
+
 
 // SECTION 2 DOM
 const button = document.getElementById("altbtn")
@@ -82,6 +163,29 @@ function ajouter_travail(travail) {
 
     update_travaux()
     update_gold(player)
+}
+
+function verifierActes() {
+
+    if (player.altitude >= 0 && !eventsDeclenches.has("acte1")) {
+        eventsDeclenches.add("acte1")
+        logActe("Acte I — La montagne est réelle.")
+    }
+
+    if (player.altitude >= 4000 && !eventsDeclenches.has("acte2")) {
+        eventsDeclenches.add("acte2")
+        logActe("Acte II — La montagne observe.")
+    }
+
+    if (player.altitude >= 7000 && !eventsDeclenches.has("acte3")) {
+        eventsDeclenches.add("acte3")
+        logActe("Acte III — Tu n’es plus seul dans ta tête.")
+    }
+
+    if (player.altitude >= 15500 && !eventsDeclenches.has("acte4")) {
+        eventsDeclenches.add("acte4")
+        logActe("Acte IV — Le sommet n’existe pas.")
+    }
 }
 
 // ---------- PERSONNAGES ----------
@@ -158,13 +262,6 @@ function update_interface(player) {
     auto_click.textContent = auto ? "Passif : ON" : "Passif : OFF"
     alt_montrer.textContent = "Altitude : " + player.altitude + " m"
 
-    // Everest
-    if (player.altitude >= 8849 && !everestAtteint) {
-        logEvent("Tu as atteint le sommet interdit.")
-        player.passif_global += 10
-        everestAtteint = true
-    }
-
     // Gold fiable même si gros saut altitude
     while (Math.floor(player.altitude / 10) > lastAltitudeGoldCheck) {
         incrementation_gold(player)
@@ -175,6 +272,8 @@ function update_interface(player) {
 
     verifier_personnages(player)
     verifierEventsAltitude()
+    verifierActes()
+
 }
 
 function update_gold(player) {
@@ -255,12 +354,9 @@ auto_click.addEventListener("click", () => {
     update_interface(player)
 })
 
-// ---------- INITIALISATION ----------
+//  INITIALISATION 
 update_travaux()
 update_personnages()
 update_multiplicateurs(player)
 update_gold(player)
 
-logActe(
-    "Acte I — Le sol est déjà trop bas. L’air est froid. Monter semble être la seule option."
-)
